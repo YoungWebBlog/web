@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>音乐播放器</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script>
+    var timer;
+    changeWidth();
+    function changeWidth(){
+        var width = window.screen.width,
+            fixedW = 320,
+            scale = width / fixedW,
+            meta = document.createElement('meta'),
+            metaAttr = {
+                name: 'viewport',
+                content: 'width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=0'
+            };
+            for(var key in metaAttr){
+                meta[key] = metaAttr[key];
+            }
+            document.head.appendChild(meta);
+    };
+    function Time(){
+        clearTimeout(timer);
+        timer = setTimeout(changeWidth,100);
+    }
+    window.addEventListener('resize',function(){
+        Time();
+    });
+    window.addEventListener('pageshow',function(e){
+        if(e.persisted){
+            Time();
+        }
+    })
+</script>
+<link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+    <div class="player">
+        <div class="top">
+            <a href="javascript:;" id="menu">歌单</a>
+            <input type="text" placeholder="请输入搜索歌曲" id="search">
+            <a href="javascript:;" id="history">历史</a>
+            <div id="m_list">
+                <p><span class="songname">刚好遇见你</span><span class="remove1">删除</span></p>
+                <p><span class="songname">童话镇</span><span class="remove1">删除</span></p>
+                <p><span class="songname">消愁</span><span class="remove1">删除</span></p>
+                <p><span class="songname">风的季节</span><span class="remove1">删除</span></p>
+                <p><span class="songname">最初的梦想</span><span class="remove1">删除</span></p>
+                <p><span class="songname">Fly</span><span class="remove1">删除</span></p>
+                <p><span class="songname">我最闪亮</span><span class="remove1">删除</span></p>
+                <p><span class="songname">撕夜</span><span class="remove1">删除</span></p>
+                <p><span class="songname">怒放的生命</span><span class="remove1">删除</span></p>
+                <p><span class="songname">带你去旅行</span><span class="remove1">删除</span></p>
+                <p><span class="songname">成都</span><span class="remove1">删除</span></p>
+                <p><span class="songname">红苕愿</span><span class="remove1">删除</span></p>
+                <p><span class="songname">全部都是你</span><span class="remove1">删除</span></p>
+                <p><span class="songname">凉凉</span><span class="remove1">删除</span></p>
+                <p><span class="songname">给你们</span><span class="remove1">删除</span></p>
+            </div>
+            <div id="h_list"></div>
+        </div>
+        <div class="title" id="title">海阔天空</div>
+        <div class="singer" id="singer">Beyond</div>
+        <div class="cd"></div>
+        <div class="lrc">
+            <div class="content"></div>
+        </div>
+        <div class="progress">
+            <div class="curTime" id="curTime">00:00</div>
+            <div class="pro-bar" id="pro-bar">
+                <span id="processBar"></span>
+                <i id="processBtn"></i>
+            </div>
+            <div class="allTime" id="allTime">00:00</div>
+        </div>
+        <div class="btn2">
+            <a href="javascript:;" id="rand"></a>
+            <a href="javascript:;" id="prev"></a>
+            <a href="javascript:;" id="play" style="background-image: url(&quot;images/play.png&quot;);"></a>
+            <a href="javascript:;" id="next"></a>
+        </div>
+        <div id="songs"><ul id="ul1"></ul></div>
+    </div>
+    <div id="loading"></div>
+    <textarea id="txt" style="display:none"></textarea>
+    <audio src="" id="myMusic"></audio>
+    <script src="js/music.js"></script>
+</body>
+</html>
